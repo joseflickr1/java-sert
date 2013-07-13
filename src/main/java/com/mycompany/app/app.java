@@ -24,7 +24,6 @@ class app extends B implements I
 
     public static void main (String [] args)  {
 
-        new Blop();
 
     }
 
@@ -44,6 +43,31 @@ class app extends B implements I
         System.out.println(string.charAt(1));
         System.out.println(string.substring(1, 3));
     }
+
+    // Sjekk referanse verdien til en String referanse 
+    private static void stringAssignments(){
+        String a  = new String ("abc"); 
+        sOut("a ", a);
+        
+        String b = a;  
+        sOut("b ", b);
+        
+        f(b); 
+
+        b+="fg"; 
+        sOut("fg ", b);
+    }
+    private static void f(String b) {
+        
+        b+="de";  
+        sOut("f(b) ", b);
+        
+        b=null;
+    }
+    private static void sOut(String desc, String value){
+        System.out.println(desc + Integer.toHexString(System.identityHashCode(value)));    
+    }
+    
 
     /*****************************************************************************************************
      * ABOUT OPERATORS
