@@ -24,7 +24,7 @@ class app extends B implements I
 
     public static void main (String [] args)  {
 
-        arraySort();
+        new Blop();
 
     }
 
@@ -99,7 +99,7 @@ class app extends B implements I
                 new Integer(1),
                 new Boolean(false)
         };
-        arraySortHelper(sampleString);
+        // arraySortHelper(sampleString);
 
         Object [] sampleInteger = {
                 new Integer(2),
@@ -368,7 +368,7 @@ class setterGetterClass {
 }
 /*****************************************************************************************************
  * Override with declared exceptions
- * TODO se mer på checked declared Exception
+ * TODO se mer pÃ¥ checked declared Exception
  */
 class SuperClass {
     void superMethod() throws Exception {
@@ -385,6 +385,9 @@ class subClass extends SuperClass {
  */
 class Blooper {
     private int a;
+    protected Blooper() {
+
+    }
     protected Blooper(int a) {
         this.a = a;
     }
@@ -393,7 +396,7 @@ class Blooper {
     }
 }
 /**
- * Blop arver fra Blooper og kaller på
+ * Blop arver fra Blooper og kaller pÃ¥
  * super konstruktoren
  * super metoden p
  */
