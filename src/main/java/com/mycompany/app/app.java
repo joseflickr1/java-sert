@@ -23,6 +23,8 @@ class app extends B implements I
     }
 
     public static void main (String [] args)  {
+    	
+    	ov1Inheritance();
 
 
     }
@@ -148,16 +150,16 @@ class app extends B implements I
     private static void arrayAsList() {
         List sampleLst = Arrays.asList(new int[2]);
     }
-    private static void multiDimArrayConstruction() {
+    private static void multiDimArrayConstruction()  {
+ 	
         int [][] ints1 = new int[1][];
-        int [][] ints1Same = {null, null};
+        int [][] ints1Same = {null};
 
         int [][] ints2 = new int[1][];
         ints2[0] = new int[2];
         ints2[0][0] = 1;
         ints2[0][1] = 1;
-        int [][] ints2Same = {{1,1}, null};
-
+        int [][] ints2Same = {{1,1}};
 
         int [][] ints3 = new int[][]{{1,2},{1,2}};
         int [][] ints3Copy = new int[][]{null, null};
@@ -188,6 +190,15 @@ class app extends B implements I
     /*****************************************************************************************************
      * ABOUT EXCEPTIONS
      */
+    
+    // Øv 1 - Kompilerings feil pga fruit konstruktøren til Mango kaster Exception
+    class Fruit{
+    	public Fruit() throws Exception{}
+    	public void eat() throws java.io.IOException{}    	
+    }
+    //class Mango extends Fruit {}
+    
+    //Øv 2
     private static int exception1() {
         String s =  "" ;
         try{
@@ -203,7 +214,7 @@ class app extends B implements I
             return 9;
         }
     }
-    //Handle or declare exception
+    // Øv 3 - Handle or declare exception
     class myException extends Exception {
         void someMethod () {
             doStuff(); // must declare or handle
@@ -218,7 +229,7 @@ class app extends B implements I
         }
     }
 
-    // Common Exceptions
+    // Øv 4 - Common Exceptions
     static private void arrayIndexOutOfBoundsException() {
         int [] i = {1,2};
         System.out.print(i[-1]);
@@ -239,6 +250,25 @@ class app extends B implements I
     }
     private static void threadSleep() throws Exception{
         Thread.sleep(3000);
+    }
+    
+    // Øv 5 - Constructor - arguments with throwable cause    
+    private static void exceptionWithMessageCause() {
+    	try {
+    		try {
+    			throw new RuntimeException("Run time");
+    		}catch (Exception e) {  			
+    			throw new Exception("Excpetion", e);
+    		}
+    	}catch(Exception e) {
+    		//e.printStackTrace();
+    		System.out.println(e.getCause().getMessage());
+    	}
+    }    
+    // Øv 6 ClassCastExceotion - Se på stacktrace, hvem kaster ClassCastException
+    private static void ClassCastOv6Ex() {
+    	AlphaOv6Ex a = new BetaOv6Ex();
+        GammaOv6Ex g = (GammaOv6Ex) a;
     }
 
 
@@ -345,7 +375,16 @@ class app extends B implements I
         }
 
     }
+    
+    /*****************************************************************************************************/
+    /**
+     * About Inheritance
+     */
+    private static void ov1Inheritance() {
+    	Person p = new Employee();
+    }
 }
+
 
 /****************************************************************************************************
  * Interface I1 extends I2
@@ -431,4 +470,27 @@ class Blop extends Blooper {
     }
 }
 
+/**
+ * Øv 6 Exception
+ */
+class AlphaOv6Ex {}
+class BetaOv6Ex extends AlphaOv6Ex {}
+class GammaOv6Ex extends AlphaOv6Ex {}
 
+/**
+* Øv 1 Inheritance
+**/
+
+class Person  {
+	Person(String s) {super();}
+	Person() {}
+}
+class Employee extends Person{
+	Employee(String s) {
+		//super()
+		System.out.println(s);
+	}	
+	Employee(){
+		this("kent");
+	}
+}
