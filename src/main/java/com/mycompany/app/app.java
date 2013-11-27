@@ -24,7 +24,7 @@ class app extends B implements I
 
     public static void main (String [] args)  {
     	
-    	ov1Inheritance();
+    	stringAssignments();
 
 
     }
@@ -61,13 +61,14 @@ class app extends B implements I
     }
     private static void f(String b) {
         
-        b+="de";  
+        b+="de"; // 'b' blir ny referanse som peker på ny variable, evivalent til new String("de"). 
         sOut("f(b) ", b);
         
         b=null;
+
     }
     private static void sOut(String desc, String value){
-        System.out.println(desc + Integer.toHexString(System.identityHashCode(value)));    
+        System.out.println(desc + Integer.toHexString(System.identityHashCode(value)) + " "+ value);    
     }
     
 
