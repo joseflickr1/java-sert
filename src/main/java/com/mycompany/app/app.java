@@ -24,7 +24,7 @@ class app extends B implements I
 
     public static void main (String [] args)  {
     	
-    	stringAssignments();
+    	ov2Inheritance();
 
 
     }
@@ -380,9 +380,19 @@ class app extends B implements I
     /*****************************************************************************************************/
     /**
      * About Inheritance
+     *   
+     * ov1Inheritance
      */
     private static void ov1Inheritance() {
     	Person p = new Employee();
+    }
+
+    /****
+    * ov2Inheritance 
+    */
+    private static void ov2Inheritance() {
+        Employee1 p = new Employee1();
+        p.meth1(); // print class Employee1
     }
 }
 
@@ -479,7 +489,9 @@ class BetaOv6Ex extends AlphaOv6Ex {}
 class GammaOv6Ex extends AlphaOv6Ex {}
 
 /**
-* Øv 1 Inheritance
+*
+* Øv 1 Inheritance - ov1Inheritance()
+*
 **/
 
 class Person  {
@@ -495,3 +507,40 @@ class Employee extends Person{
 		this("kent");
 	}
 }
+
+/**
+* ov2Inheritance
+*
+* Override final method gir kompilerings feil
+* Override med lavere access nivå gir kompilering feil
+* 
+* Override return type kan være subtype
+*
+*
+**/
+
+class Person1  {
+
+    // public final void meth1() {
+
+    public Person1 meth1() {
+        System.out.print("class Person1");
+        return new Person1();
+    }
+
+}
+class Employee1 extends Person1{
+
+    // protected void meth1() {
+
+    public Employee1 meth1(){
+
+        System.out.print("class Employee1");
+        return new Employee1();
+    }
+
+}
+
+
+
+
